@@ -12,6 +12,7 @@ using ThetaOnlineStoree.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ThetaOnlineStoree.Models;
 
 namespace ThetaOnlineStoree
 {
@@ -30,6 +31,9 @@ namespace ThetaOnlineStoree
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ThetaOnlineStoreContext>(options =>
+               options.UseSqlServer(
+                   Configuration.GetConnectionString("MyCon")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
